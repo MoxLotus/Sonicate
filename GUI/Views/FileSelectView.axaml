@@ -4,23 +4,23 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:GUI.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="GUI.Views.MainView"
-             x:DataType="vm:MainViewModel"
-             xmlns:views="clr-namespace:GUI.Views"
+             x:Class="GUI.Views.FileSelectView"
+             x:DataType="vm:FileSelectViewModel"
              >
   <Design.DataContext>
     <!-- This only sets the DataContext for the previewer in an IDE,
          to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-    <vm:MainViewModel />
+    <vm:FileSelectViewModel />
   </Design.DataContext>
 
-  <TabControl>
-    <TabItem Header="File">
-      <views:FileSelectView DataContext="{Binding FileSelect}"/>
-    </TabItem>
-    <TabItem Header="Encode">
-      <views:TranscodeView DataContext="{Binding Transcode}"/>
-    </TabItem>
-  </TabControl>
+  <StackPanel>
+    <StackPanel Orientation="Horizontal">
+      <TextBlock Text="Input Path: "/>
+      <Border BorderBrush="Gray" BorderThickness="2">
+        <TextBlock Text="{Binding SelectedFilePath}" Width="500"/>
+      </Border>
+      <Button Content="Browse" Command="{Binding SelectFilesCommand}" />
+    </StackPanel>
+  </StackPanel>
 
 </UserControl>
