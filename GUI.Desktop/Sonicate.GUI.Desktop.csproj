@@ -10,10 +10,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Avalonia.Desktop" Version="$(AvaloniaVersion)" />
+    <PackageReference Include="Avalonia.Desktop" Version="11.3.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GUI\GUI.csproj" />
+    <ProjectReference Include="..\GUI\Sonicate.GUI.csproj" />
   </ItemGroup>
 </Project>
