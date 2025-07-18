@@ -1,8 +1,8 @@
-﻿using GUI.Services;
+﻿using Sonicate.GUI.Services;
 using ReactiveUI;
 using System;
 
-namespace GUI.ViewModels;
+namespace Sonicate.GUI.ViewModels;
 
 public class ViewModelBase : ReactiveObject
 {

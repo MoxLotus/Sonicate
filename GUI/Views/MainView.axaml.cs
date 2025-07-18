@@ -1,6 +1,6 @@
 ﻿using Avalonia.Controls;
 
-namespace GUI.Views;
+namespace Sonicate.GUI.Views;
 
 public partial class MainView : UserControl
 {

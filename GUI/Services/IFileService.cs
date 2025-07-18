@@ -1,7 +1,7 @@
 ﻿using Avalonia.Platform.Storage;
 using System.Threading.Tasks;
 
-namespace GUI.Services;
+namespace Sonicate.GUI.Services;
 
 public interface IFileService
 {

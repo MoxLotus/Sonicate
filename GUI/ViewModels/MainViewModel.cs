@@ -6,9 +6,9 @@ using System.Collections.ObjectModel;
 using System.Reactive;
 using System.Threading.Tasks;
 using Avalonia;
-using GUI.Services;
+using Sonicate.GUI.Services;
 
-namespace GUI.ViewModels;
+namespace Sonicate.GUI.ViewModels;
 
 public class MainViewModel : ViewModelBase
 {

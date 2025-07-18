@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GUI.Views;
+namespace Sonicate.GUI.Views;
 
 public partial class FileSelectView : UserControl
 {

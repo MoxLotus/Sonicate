@@ -1,5 +1,5 @@
 ﻿using Avalonia.Platform.Storage;
-using GUI.Services;
+using Sonicate.GUI.Services;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Reactive;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GUI.ViewModels
+namespace Sonicate.GUI.ViewModels
 {
     public class FileSelectViewModel : ViewModelBase
     {

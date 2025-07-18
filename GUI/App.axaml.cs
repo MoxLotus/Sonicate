@@ -3,13 +3,13 @@ using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 
-using GUI.Services;
-using GUI.ViewModels;
-using GUI.Views;
+using Sonicate.GUI.Services;
+using Sonicate.GUI.ViewModels;
+using Sonicate.GUI.Views;
 
 using Microsoft.Extensions.DependencyInjection;
 
-namespace GUI;
+namespace Sonicate.GUI;
 
 public partial class App : Application
 {

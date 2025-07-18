@@ -3,7 +3,7 @@
 using Avalonia;
 using Avalonia.ReactiveUI;
 
-namespace GUI.Desktop;
+namespace Sonicate.GUI.Desktop;
 
 class Program
 {
