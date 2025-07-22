@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.14.36301.6
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sonicate.GUI", "GUI\Sonicate.GUI.csproj", "{36600325-0560-EFB1-C079-4E957C39FC52}"
+	ProjectSection(ProjectDependencies) = postProject
+		{52D99FEF-0ACF-439F-8531-654BD3DE1220} = {52D99FEF-0ACF-439F-8531-654BD3DE1220}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sonicate.GUI.Desktop", "GUI.Desktop\Sonicate.GUI.Desktop.csproj", "{D3E787AD-EB64-8DFD-67BE-8290FA8791AA}"
 EndProject
