@@ -4,14 +4,9 @@ using System.Threading.Tasks;
 
 namespace Sonicate.GUI.Services;
 
-public class FileService : IFileService
+public class FileService(Window target) : IFileService
 {
-    private readonly Window _target;
-
-    public FileService(Window target)
-    {
-        _target = target;
-    }
+    private readonly Window _target = target;
 
     public async Task<IStorageFolder?> OpenFolderPickerAsync(string title)
     {
