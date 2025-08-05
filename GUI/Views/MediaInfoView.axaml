@@ -7,6 +7,7 @@
              xmlns:views="clr-namespace:Sonicate.GUI.Views"
              >
   <StackPanel>
+    <TextBlock Text="{Binding File.Name}" />
     <TextBlock Text="{Binding Media.Name}" />
     <TextBlock Text="{Binding Media.Format}" />
     <TextBlock Text="{Binding Media.Duration}" />

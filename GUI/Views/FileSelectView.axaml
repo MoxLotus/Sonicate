@@ -15,6 +15,7 @@
   </Design.DataContext>
 
   <StackPanel>
+
     <StackPanel Orientation="Horizontal">
       <TextBlock Text="Input Path: "/>
       <Border BorderBrush="Gray" BorderThickness="2">
@@ -23,13 +24,26 @@
       <Button Content="Browse" Command="{Binding SelectFilesCommand}" />
     </StackPanel>
 
-    <ContentControl Content="{Binding Media}">
-      <ContentControl.DataTemplates>
-        <DataTemplate DataType="vm:MediaInfoViewModel">
-          <views:MediaInfoView />
-        </DataTemplate>
-      </ContentControl.DataTemplates>
-    </ContentControl>
+    <ScrollViewer>
+      <ItemsControl ItemsSource="{Binding MediaFiles}">
+        <ItemsControl.ItemsPanel>
+          <ItemsPanelTemplate>
+            <StackPanel Orientation="Horizontal" />
+          </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+
+        <ItemsControl.ItemTemplate>
+          <DataTemplate DataType="vm:MediaInfoViewModel">
+            <Border BorderBrush="Gray"
+                    BorderThickness="1"
+                    >
+              <views:MediaInfoView />
+            </Border>
+          </DataTemplate>
+        </ItemsControl.ItemTemplate>
+      </ItemsControl>
+    </ScrollViewer>
+
   </StackPanel>
 
 </UserControl>

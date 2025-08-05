@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 using Sonicate.Core.Services;
 using System.Diagnostics;
+using System.Collections.ObjectModel;
 
 namespace Sonicate.GUI.ViewModels;
 
@@ -34,8 +35,11 @@ public class FileSelectViewModel : ViewModelBase
             await foreach (var item in folder?.GetItemsAsync())
                 if (item is IStorageFile file)
                     files.Add(file);
+            //TODO: Initialize metadata service correctly
             FFmpegMetadataService serv = new();
-            Media = new(await serv.GetMetadataAsync(files[0].Path.LocalPath));
+            MediaFiles.Clear();
+            foreach (var file in files)
+                MediaFiles.Add(new(file, await serv.GetMetadataAsync(file.Path.LocalPath)));
         });
     }
 
@@ -46,10 +50,10 @@ public class FileSelectViewModel : ViewModelBase
         return await fileAccessService.OpenFolderPickerAsync("Select Folder");
     }
 
-    private MediaInfoViewModel? _media;
-    public MediaInfoViewModel? Media
+    private ObservableCollection<MediaInfoViewModel> _mediaFiles = new();
+    public ObservableCollection<MediaInfoViewModel> MediaFiles
     {
-        get => _media;
-        private set => this.RaiseAndSetIfChanged(ref _media, value);
+        get => _mediaFiles;
+        private set => this.RaiseAndSetIfChanged(ref _mediaFiles, value);
     }
 }
