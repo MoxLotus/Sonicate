@@ -13,5 +13,5 @@ namespace Sonicate.Core.Services;
 
 public interface IVideoMetadataService
 {
-    public abstract Task<ContainerInfo> GetMetadataAsync(string filePath);
+    public abstract Task<MediaInfo> GetMetadataAsync(string filePath);
 }

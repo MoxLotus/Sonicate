@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace Sonicate.Core.DTOs;
 
-public class ContainerInfo
+public class MediaInfo
 {
     public required string Format { get; set; }
+    public required string Name { get; set; }
     public required TimeSpan Duration { get; set; }
     public int Chapters { get; internal set; }
     private List<TrackInfo> _tracks = [];

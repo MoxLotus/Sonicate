@@ -1,6 +1,7 @@
 ﻿using FFMpegCore;
 using FFMpegCore.Arguments;
 using FFMpegCore.Enums;
+using Sonicate.Core.Extensions;
 using Sonicate.Core.DTOs;
 using System;
 using System.Collections.Generic;
@@ -14,13 +15,14 @@ namespace Sonicate.Core.Services;
 
 public class FFmpegMetadataService : IVideoMetadataService
 {
-    public async Task<ContainerInfo> GetMetadataAsync(string filePath)
+    public async Task<MediaInfo> GetMetadataAsync(string filePath)
     {
         IMediaAnalysis mediaInfo = await FFProbe.AnalyseAsync(filePath);
 
-        ContainerInfo containerInfo = new()
+        MediaInfo containerInfo = new()
         {
             Format = mediaInfo.Format.FormatLongName,
+            Name = mediaInfo.Format.Tags?.GetValueOrEmpty("title") ?? string.Empty,
             Duration = mediaInfo.Duration,
             Chapters = mediaInfo.Chapters.Count,
         };
@@ -32,10 +34,10 @@ public class FFmpegMetadataService : IVideoMetadataService
             {
                 Type = stream switch
                 {
-                    AudioStream => ContainerInfo.TrackInfo.TrackType.Audio,
-                    SubtitleStream => ContainerInfo.TrackInfo.TrackType.Subtitle,
-                    VideoStream => ContainerInfo.TrackInfo.TrackType.Video,
-                    _ => ContainerInfo.TrackInfo.TrackType.Unknown,
+                    AudioStream => MediaInfo.TrackInfo.TrackType.Audio,
+                    SubtitleStream => MediaInfo.TrackInfo.TrackType.Subtitle,
+                    VideoStream => MediaInfo.TrackInfo.TrackType.Video,
+                    _ => MediaInfo.TrackInfo.TrackType.Unknown,
                 },
                 Codec = stream.CodecName,
                 Language = stream.Language ?? string.Empty,
