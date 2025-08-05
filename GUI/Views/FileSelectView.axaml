@@ -6,6 +6,7 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Sonicate.GUI.Views.FileSelectView"
              x:DataType="vm:FileSelectViewModel"
+             xmlns:views="clr-namespace:Sonicate.GUI.Views"
              >
   <Design.DataContext>
     <!-- This only sets the DataContext for the previewer in an IDE,
@@ -21,6 +22,14 @@
       </Border>
       <Button Content="Browse" Command="{Binding SelectFilesCommand}" />
     </StackPanel>
+
+    <ContentControl Content="{Binding Media}">
+      <ContentControl.DataTemplates>
+        <DataTemplate DataType="vm:MediaInfoViewModel">
+          <views:MediaInfoView />
+        </DataTemplate>
+      </ContentControl.DataTemplates>
+    </ContentControl>
   </StackPanel>
 
 </UserControl>

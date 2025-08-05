@@ -1,0 +1,14 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Sonicate.GUI.ViewModels"             x:Class="Sonicate.GUI.Views.MediaInfoView"
+             x:DataType="vm:MediaInfoViewModel"
+             xmlns:views="clr-namespace:Sonicate.GUI.Views"
+             >
+  <StackPanel>
+    <TextBlock Text="{Binding Media.Name}" />
+    <TextBlock Text="{Binding Media.Format}" />
+    <TextBlock Text="{Binding Media.Duration}" />
+  </StackPanel>
+</UserControl>

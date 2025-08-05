@@ -35,7 +35,7 @@ public class FileSelectViewModel : ViewModelBase
                 if (item is IStorageFile file)
                     files.Add(file);
             FFmpegMetadataService serv = new();
-            await serv.GetMetadataAsync(files[0].Path.LocalPath);
+            Media = new(await serv.GetMetadataAsync(files[0].Path.LocalPath));
         });
     }
 
@@ -44,5 +44,12 @@ public class FileSelectViewModel : ViewModelBase
         IFileService fileAccessService = GetFileAccessService();
         //TODO: Fetch children
         return await fileAccessService.OpenFolderPickerAsync("Select Folder");
+    }
+
+    private MediaInfoViewModel? _media;
+    public MediaInfoViewModel? Media
+    {
+        get => _media;
+        private set => this.RaiseAndSetIfChanged(ref _media, value);
     }
 }
