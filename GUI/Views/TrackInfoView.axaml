@@ -7,10 +7,10 @@
              x:DataType="vm:TrackInfoViewModel"
              xmlns:views="clr-namespace:Sonicate.GUI.Views"
 >
-  <StackPanel>
+  <StackPanel Orientation="Horizontal">
     <CheckBox IsChecked="{Binding Selected}" />
-    <TextBlock Text="{Binding Track.Type}" />
     <TextBlock Text="{Binding Track.Codec}" />
+    <TextBlock Text=" " />
     <TextBlock Text="{Binding Track.Language}" />
   </StackPanel>
 </UserControl>
