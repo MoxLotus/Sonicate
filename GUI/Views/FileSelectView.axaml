@@ -24,25 +24,35 @@
       <Button Content="Browse" Command="{Binding SelectFilesCommand}" />
     </StackPanel>
 
-    <ScrollViewer>
-      <ItemsControl ItemsSource="{Binding MediaFiles}">
-        <ItemsControl.ItemsPanel>
-          <ItemsPanelTemplate>
-            <StackPanel Orientation="Horizontal" />
-          </ItemsPanelTemplate>
-        </ItemsControl.ItemsPanel>
-
-        <ItemsControl.ItemTemplate>
-          <DataTemplate DataType="vm:MediaInfoViewModel">
-            <Border BorderBrush="Gray"
-                    BorderThickness="1"
+    <Border Name="FileListBackground"
+            Background="Transparent"
+            PointerPressed="OnPointerPressed"
+            PointerMoved="OnPointerMoved"
+            PointerReleased="OnPointerReleased"
+            >
+      <ScrollViewer Name="FileListViewer"
+                    HorizontalScrollBarVisibility="Hidden"
                     >
-              <views:MediaInfoView />
-            </Border>
-          </DataTemplate>
-        </ItemsControl.ItemTemplate>
-      </ItemsControl>
-    </ScrollViewer>
+        <ItemsControl ItemsSource="{Binding MediaFiles}">
+          <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+              <StackPanel Orientation="Horizontal" />
+            </ItemsPanelTemplate>
+          </ItemsControl.ItemsPanel>
+      
+          <ItemsControl.ItemTemplate>
+            <DataTemplate DataType="vm:MediaInfoViewModel">
+              <Border BorderBrush="Gray"
+                      BorderThickness="1"
+                      Margin="2,4,2,4"
+                      >
+                <views:MediaInfoView />
+              </Border>
+            </DataTemplate>
+          </ItemsControl.ItemTemplate>
+        </ItemsControl>
+      </ScrollViewer>
+    </Border>
 
   </StackPanel>
 
