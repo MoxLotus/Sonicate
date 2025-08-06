@@ -32,7 +32,9 @@ public partial class FileSelectView : UserControl
         Point current = e.GetPosition(FileListBackground);
         double dx = current.X - _previous.X;
 
-        FileListViewer.Offset = FileListViewer.Offset.WithX(FileListViewer.Offset.X - dx);
+        FileListViewer.Offset = FileListViewer.Offset.WithX(
+            FileListViewer.Offset.X - dx
+        );
 
         _previous = current;
         e.Handled = true;

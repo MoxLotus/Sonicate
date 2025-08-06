@@ -14,9 +14,11 @@
     <vm:FileSelectViewModel />
   </Design.DataContext>
 
-  <StackPanel>
+  <DockPanel>
 
-    <StackPanel Orientation="Horizontal">
+    <StackPanel Orientation="Horizontal"
+                DockPanel.Dock="Top"
+    >
       <TextBlock Text="Input Path: "/>
       <Border BorderBrush="Gray" BorderThickness="2">
         <TextBlock Text="{Binding SelectedFilePath}" Width="500"/>
@@ -32,6 +34,7 @@
             >
       <ScrollViewer Name="FileListViewer"
                     HorizontalScrollBarVisibility="Hidden"
+                    VerticalScrollBarVisibility="Disabled"
                     >
         <ItemsControl ItemsSource="{Binding MediaFiles}">
           <ItemsControl.ItemsPanel>
@@ -54,6 +57,6 @@
       </ScrollViewer>
     </Border>
 
-  </StackPanel>
+  </DockPanel>
 
 </UserControl>
