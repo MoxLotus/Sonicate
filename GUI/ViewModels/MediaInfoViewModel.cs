@@ -1,15 +1,13 @@
 ﻿using Avalonia.Platform.Storage;
 using ReactiveUI;
 using Sonicate.Core.DTOs;
-using System;
-using System.Collections.Generic;
+using Sonicate.GUI.Services;
+using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Sonicate.GUI.ViewModels;
 
-public class MediaInfoViewModel(IStorageFile file, MediaInfo media) : ViewModelBase
+public class MediaInfoViewModel(IStorageFile file, MediaInfo media, ScrollSyncService scrollSync) : ViewModelBase
 {
     private bool _selected = true;
     public bool Selected
@@ -19,4 +17,9 @@ public class MediaInfoViewModel(IStorageFile file, MediaInfo media) : ViewModelB
     }
     public IStorageFile File { get; } = file;
     public MediaInfo Media { get; } = media;
+    public ScrollSyncService ScrollSync { get; } = scrollSync;
+
+    public ObservableCollection<TrackInfoViewModel> Tracks { get; } = new(
+        media.Tracks.Select(t => new TrackInfoViewModel(t))
+    );
 }

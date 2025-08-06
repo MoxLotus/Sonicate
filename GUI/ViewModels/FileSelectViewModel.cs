@@ -30,16 +30,18 @@ public class FileSelectViewModel : ViewModelBase
         SelectFilesCommand = ReactiveCommand.CreateFromTask(async () =>
         {
             var folder = await DoOpenFolderPickerAsync();
-            SelectedFilePath = folder?.Path.LocalPath ?? "";
+            if (folder is null) return;
+            SelectedFilePath = folder.Path.LocalPath ?? "";
             List<IStorageFile> files = [];
-            await foreach (var item in folder?.GetItemsAsync())
+            await foreach (var item in folder.GetItemsAsync())
                 if (item is IStorageFile file)
                     files.Add(file);
             //TODO: Initialize metadata service correctly
             FFmpegMetadataService serv = new();
+            ScrollSyncService scrollSync = new();
             MediaFiles.Clear();
             foreach (var file in files)
-                MediaFiles.Add(new(file, await serv.GetMetadataAsync(file.Path.LocalPath)));
+                MediaFiles.Add(new(file, await serv.GetMetadataAsync(file.Path.LocalPath), scrollSync));
         });
     }
 

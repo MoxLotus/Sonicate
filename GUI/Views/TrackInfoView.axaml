@@ -1,0 +1,16 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Sonicate.GUI.ViewModels"
+             x:Class="Sonicate.GUI.Views.TrackInfoView"
+             x:DataType="vm:TrackInfoViewModel"
+             xmlns:views="clr-namespace:Sonicate.GUI.Views"
+>
+  <StackPanel>
+    <CheckBox IsChecked="{Binding Selected}" />
+    <TextBlock Text="{Binding Track.Type}" />
+    <TextBlock Text="{Binding Track.Codec}" />
+    <TextBlock Text="{Binding Track.Language}" />
+  </StackPanel>
+</UserControl>
