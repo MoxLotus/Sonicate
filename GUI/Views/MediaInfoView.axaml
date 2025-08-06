@@ -8,6 +8,7 @@
              >
   <StackPanel>
     <TextBlock Text="{Binding File.Name}" />
+    <CheckBox IsChecked="{Binding Selected}" />
     <TextBlock Text="{Binding Media.Name}" />
     <TextBlock Text="{Binding Media.Format}" />
     <TextBlock Text="{Binding Media.Duration}" />
