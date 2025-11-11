@@ -14,10 +14,17 @@
   </Design.DataContext>
 
   <StackPanel>
+    <TextBlock Text="Do Not Modify" />
+    <TextBlock Text="HDR SDR" />
+    <TextBlock Text="Dar Fix" />
+    <TextBlock Text="Crop Auto Width Height" />
+    <TextBlock Text="Resize Width Height Scale?" />
+    <TextBlock Text="Denoise Min Med Max" />
     <StackPanel Orientation="Horizontal">
       <TextBlock Text="Codec: "/>
       <ComboBox ItemsSource="{Binding Options}" SelectedItem="{Binding SelectedOption}"/>
     </StackPanel>
+    <TextBlock Text="Preset: Slow" />
     <StackPanel Orientation="Horizontal">
       <TextBlock Text="{Binding SelectedNumberFormatted}" Width="60"/>
       <Slider Minimum="10" Maximum="28" TickFrequency="1" Value="{Binding SelectedNumber}" Width="100"/>
