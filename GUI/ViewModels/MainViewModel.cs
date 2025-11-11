@@ -14,4 +14,6 @@ public class MainViewModel : ViewModelBase
 {
     public FileSelectViewModel FileSelect { get; } = new();
     public TranscodeViewModel Transcode { get; } = new();
+    public AudioViewModel Audio { get; } = new();
+    public AudioViewModel Commentary { get; } = new();
 }

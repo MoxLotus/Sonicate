@@ -18,8 +18,17 @@
     <TabItem Header="File">
       <views:FileSelectView DataContext="{Binding FileSelect}"/>
     </TabItem>
-    <TabItem Header="Encode">
+    <TabItem Header="Video">
       <views:TranscodeView DataContext="{Binding Transcode}"/>
+    </TabItem>
+    <TabItem Header="Audio">
+      <views:AudioView DataContext="{Binding Audio}"/>
+    </TabItem>
+    <TabItem Header="Commentary">
+      <views:AudioView DataContext="{Binding Commentary}"/>
+    </TabItem>
+    <TabItem Header="Subtitles">
+      <!---->views:SubtitleView DataContext="{Binding Subtitles}"/>
     </TabItem>
   </TabControl>
 
