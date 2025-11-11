@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Sonicate.Core.Services;
 using System.Diagnostics;
 using System.Collections.ObjectModel;
+using Sonicate.Core.DTOs;
 
 namespace Sonicate.GUI.ViewModels;
 
@@ -29,27 +30,20 @@ public class FileSelectViewModel : ViewModelBase
     {
         SelectFilesCommand = ReactiveCommand.CreateFromTask(async () =>
         {
-            var folder = await DoOpenFolderPickerAsync();
-            if (folder is null) return;
-            SelectedFilePath = folder.Path.LocalPath ?? "";
-            List<IStorageFile> files = [];
-            await foreach (var item in folder.GetItemsAsync())
-                if (item is IStorageFile file)
-                    files.Add(file);
+            Debug.WriteLine("SelectFilesCommand executed");
+            IFileService fileAccessService = GetFileAccessService();
+            var files = await fileAccessService.GetFileDescriptorsFromFolderAsync("Select Folder");
+            Debug.WriteLine($"Number of files selected: {files.Count}");
+            if (files.Count == 0) return;
+            SelectedFilePath = files[0].Path.LocalPath ?? "";
             //TODO: Initialize metadata service correctly
+            Debug.WriteLine("Initializing FFmpegMetadataService");
             FFmpegMetadataService serv = new();
             ScrollSyncService scrollSync = new();
             MediaFiles.Clear();
             foreach (var file in files)
                 MediaFiles.Add(new(file, await serv.GetMetadataAsync(file.Path.LocalPath), scrollSync));
         });
-    }
-
-    private async Task<IStorageFolder?> DoOpenFolderPickerAsync()
-    {
-        IFileService fileAccessService = GetFileAccessService();
-        //TODO: Fetch children
-        return await fileAccessService.OpenFolderPickerAsync("Select Folder");
     }
 
     private ObservableCollection<MediaInfoViewModel> _mediaFiles = new();

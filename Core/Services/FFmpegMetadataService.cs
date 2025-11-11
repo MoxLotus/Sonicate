@@ -17,6 +17,7 @@ public class FFmpegMetadataService : IVideoMetadataService
 {
     public async Task<MediaInfo> GetMetadataAsync(string filePath)
     {
+        Debug.WriteLine("Getting media info for file: " + filePath);
         IMediaAnalysis mediaInfo = await FFProbe.AnalyseAsync(filePath);
 
         MediaInfo containerInfo = new()

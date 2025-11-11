@@ -3,10 +3,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:Sonicate.GUI.ViewModels"
+             xmlns:dt="clr-namespace:Sonicate.GUI.ViewModels.DesignTime"
              x:Class="Sonicate.GUI.Views.MediaInfoView"
              x:DataType="vm:MediaInfoViewModel"
              xmlns:views="clr-namespace:Sonicate.GUI.Views"
 >
+  <Design.DataContext>
+    <dt:PreviewMediaInfo />
+  </Design.DataContext>
   <DockPanel>
     <StackPanel DockPanel.Dock="Top">
       <TextBlock Text="{Binding File.Name}" />

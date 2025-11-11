@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Sonicate.GUI.ViewModels;
 
-public class MediaInfoViewModel(IStorageFile file, MediaInfo media, ScrollSyncService scrollSync) : ViewModelBase
+public class MediaInfoViewModel(FileDescriptor file, MediaInfo media, ScrollSyncService scrollSync) : ViewModelBase
 {
     private bool _selected = true;
     public bool Selected
@@ -15,7 +15,7 @@ public class MediaInfoViewModel(IStorageFile file, MediaInfo media, ScrollSyncSe
         get => _selected;
         set => this.RaiseAndSetIfChanged(ref _selected, value);
     }
-    public IStorageFile File { get; } = file;
+    public FileDescriptor File { get; } = file;
     public MediaInfo Media { get; } = media;
     public ScrollSyncService ScrollSync { get; } = scrollSync;
 

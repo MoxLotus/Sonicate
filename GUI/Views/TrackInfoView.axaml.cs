@@ -1,4 +1,5 @@
 ﻿using Avalonia.Controls;
+using Sonicate.GUI.ViewModels.DesignTime;
 
 namespace Sonicate.GUI.Views;
 
