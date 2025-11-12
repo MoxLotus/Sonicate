@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Sonicate.GUI.ViewModels;
 
-public class TranscodeViewModel : ViewModelBase
+public class TranscodeViewModel : MainViewModel.Child
 {
     public ObservableCollection<string> Options { get; } =
         [

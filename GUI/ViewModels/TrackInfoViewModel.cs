@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Sonicate.GUI.ViewModels;
 
-public class TrackInfoViewModel(MediaInfo.TrackInfo track) : ViewModelBase
+public class TrackInfoViewModel(MediaInfo.TrackInfo track) : ReactiveObject
 {
     private bool _selected = true;
     public bool Selected

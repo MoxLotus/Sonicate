@@ -6,6 +6,6 @@ using System.Threading.Tasks;
 
 namespace Sonicate.GUI.ViewModels;
 
-public class AudioViewModel : ViewModelBase
+public class AudioViewModel : MainViewModel.Child
 {
 }

@@ -15,8 +15,14 @@ using Sonicate.Core.DTOs;
 
 namespace Sonicate.GUI.ViewModels;
 
-public class FileSelectViewModel : ViewModelBase
+public class FileSelectViewModel : MainViewModel.Child
 {
+    protected static IFileService GetFileAccessService()
+    {
+        if (App.Current?.Services?.GetService(typeof(IFileService)) is not IFileService fileAccessService) throw new NullReferenceException("Missing File Service instance.");
+        return fileAccessService;
+    }
+
     private string _selectedFilePath = "";
     public string SelectedFilePath
     {
@@ -46,7 +52,7 @@ public class FileSelectViewModel : ViewModelBase
         });
     }
 
-    private ObservableCollection<MediaInfoViewModel> _mediaFiles = new();
+    private ObservableCollection<MediaInfoViewModel> _mediaFiles = [];
     public ObservableCollection<MediaInfoViewModel> MediaFiles
     {
         get => _mediaFiles;
