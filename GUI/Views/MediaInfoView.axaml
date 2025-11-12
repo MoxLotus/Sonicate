@@ -11,10 +11,18 @@
   <Design.DataContext>
     <dt:PreviewMediaInfo />
   </Design.DataContext>
-  <DockPanel>
-    <StackPanel DockPanel.Dock="Top">
-      <TextBlock Text="{Binding File.Name}" />
-      <CheckBox IsChecked="{Binding Selected}" />
+  <DockPanel MinWidth="175" MaxWidth="250">
+    <CheckBox
+      IsChecked="{Binding Selected}"
+      VerticalAlignment="Top"
+    />
+    <StackPanel
+      DockPanel.Dock="Top"
+    >
+      <TextBlock
+        Text="{Binding File.Name}"
+        TextWrapping="Wrap"
+      />
       <TextBlock Text="{Binding Media.Name}" />
       <TextBlock Text="{Binding Media.Format}" />
       <TextBlock Text="{Binding Media.Duration}" />
@@ -32,7 +40,7 @@
       
         <ItemsControl.ItemTemplate>
           <DataTemplate DataType="vm:TrackInfoViewModel">
-            <views:TrackInfoView />
+            <views:TrackInfoView/>
           </DataTemplate>
         </ItemsControl.ItemTemplate>
       </ItemsControl>

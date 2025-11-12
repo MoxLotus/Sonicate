@@ -11,10 +11,22 @@
   <Design.DataContext>
     <dt:PreviewTrackInfo />
   </Design.DataContext>
-  <StackPanel Orientation="Horizontal">
+  <DockPanel
+    Margin="{Binding Margin}"
+    HorizontalAlignment="Stretch"
+    MinWidth="100"
+  >
     <CheckBox IsChecked="{Binding Selected}" />
-    <TextBlock Text="{Binding Track.Codec}" />
-    <TextBlock Text=" " />
-    <TextBlock Text="{Binding Track.Language}" />
-  </StackPanel>
+    <Grid HorizontalAlignment="Stretch">
+      <TextBlock
+        Text="{Binding Track.Codec}"
+        IsEnabled="{Binding Selected}"
+      />
+    </Grid>
+    <TextBlock
+      Text="{Binding Track.Language}"
+      IsEnabled="{Binding Selected}"
+      TextAlignment="Right"
+    />
+  </DockPanel>
 </UserControl>

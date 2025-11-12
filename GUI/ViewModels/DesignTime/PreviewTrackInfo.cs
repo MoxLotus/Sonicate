@@ -13,7 +13,8 @@ public class PreviewTrackInfo : TrackInfoViewModel
         : base(new MediaInfo.TrackInfo
         {
             Codec = "Opus",
-            Language = "eng"
+            Language = "eng",
+            Type = MediaInfo.TrackInfo.TrackType.Audio
         })
     {
     }

@@ -33,8 +33,10 @@ public class PreviewMediaInfo : MediaInfoViewModel
     {
         public DummyMediaInfo()
         {
-            AddTrack(new TrackInfo { Codec = "AAC", Language = "en" });
-            AddTrack(new TrackInfo { Codec = "Opus", Language = "ja" });
+            AddTrack(new TrackInfo { Codec = "H.264", Language = "und", Type = TrackInfo.TrackType.Video });
+            AddTrack(new TrackInfo { Codec = "AAC", Language = "eng", Type = TrackInfo.TrackType.Audio});
+            AddTrack(new TrackInfo { Codec = "Opus", Language = "jap", Type = TrackInfo.TrackType.Audio });
+            AddTrack(new TrackInfo { Codec = "SRT", Language = "eng", Type = TrackInfo.TrackType.Subtitle });
         }
     }
 

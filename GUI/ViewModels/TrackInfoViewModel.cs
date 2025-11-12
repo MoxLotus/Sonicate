@@ -1,4 +1,5 @@
-﻿using ReactiveUI;
+﻿using Avalonia;
+using ReactiveUI;
 using Sonicate.Core.DTOs;
 using System;
 using System.Collections.Generic;
@@ -17,4 +18,14 @@ public class TrackInfoViewModel(MediaInfo.TrackInfo track) : ViewModelBase
         set => this.RaiseAndSetIfChanged(ref _selected, value);
     }
     public MediaInfo.TrackInfo Track { get; } = track;
+    public Thickness Margin { get; } = new(
+        track.Type switch
+        {
+            MediaInfo.TrackInfo.TrackType.Video => 0,
+            MediaInfo.TrackInfo.TrackType.Audio => 25,
+            MediaInfo.TrackInfo.TrackType.Subtitle => 50,
+            _ => 90
+        }
+        , 0, 5, 0
+    );
 }
