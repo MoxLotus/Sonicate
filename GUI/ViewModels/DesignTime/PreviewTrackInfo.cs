@@ -10,11 +10,11 @@ namespace Sonicate.GUI.ViewModels.DesignTime;
 public class PreviewTrackInfo : TrackInfoViewModel
 {
     public PreviewTrackInfo()
-        : base(new MediaInfo.TrackInfo
+        : base(new TrackInfo
         {
             Codec = "Opus",
             Language = "eng",
-            Type = MediaInfo.TrackInfo.TrackType.Audio
+            Type = TrackInfo.TrackType.Audio
         })
     {
     }

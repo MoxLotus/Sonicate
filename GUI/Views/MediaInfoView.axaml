@@ -2,51 +2,56 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:system="using:System"
              xmlns:vm="clr-namespace:Sonicate.GUI.ViewModels"
              xmlns:dt="clr-namespace:Sonicate.GUI.ViewModels.DesignTime"
+             xmlns:views="clr-namespace:Sonicate.GUI.Views"
              x:Class="Sonicate.GUI.Views.MediaInfoView"
              x:DataType="vm:MediaInfoViewModel"
-             xmlns:views="clr-namespace:Sonicate.GUI.Views"
 >
   <Design.DataContext>
     <dt:PreviewMediaInfo />
   </Design.DataContext>
-  <DockPanel MinWidth="175" MaxWidth="250">
-    <CheckBox
-      IsChecked="{Binding Selected}"
-      VerticalAlignment="Top"
-    />
-    <StackPanel
-      DockPanel.Dock="Top"
-      IsEnabled="{Binding Selected}"
-    >
-      <TextBlock
-        Text="{Binding File.Name}"
-        TextWrapping="Wrap"
-      />
+
+  <UserControl.Resources>
+    <!-- Each DataTemplate has an explicit x:Key so they are valid dictionary entries -->
+    <DataTemplate x:Key="AudioTemplate" DataType="vm:AudioTrackInfoViewModel">
+      <views:AudioTrackInfoView />
+    </DataTemplate>
+
+    <DataTemplate x:Key="VideoTemplate" DataType="vm:VideoTrackInfoViewModel">
+      <views:VideoTrackInfoView />
+    </DataTemplate>
+
+    <DataTemplate x:Key="TrackTemplate" DataType="vm:TrackInfoViewModel">
+      <views:TrackInfoView />
+    </DataTemplate>
+
+    <!-- The selector receives the templates as properties -->
+    <views:TrackTemplateSelector x:Key="TrackTemplateSelector"
+                                AudioTemplate="{StaticResource AudioTemplate}"
+                                VideoTemplate="{StaticResource VideoTemplate}"
+                                DefaultTemplate="{StaticResource TrackTemplate}" />
+  </UserControl.Resources>
+
+  <DockPanel MinWidth="175" MaxWidth="300">
+    <CheckBox IsChecked="{Binding Selected}" VerticalAlignment="Top" />
+    <StackPanel DockPanel.Dock="Top" IsEnabled="{Binding Selected}">
+      <TextBlock Text="{Binding File.Name}" TextWrapping="Wrap" />
       <TextBlock Text="{Binding Media.Name}" />
       <TextBlock Text="{Binding Media.Format}" />
       <TextBlock Text="{Binding Media.Duration}" />
     </StackPanel>
 
-    <ScrollViewer Name="TrackListViewer"
-                  VerticalScrollBarVisibility="Hidden"
-    >
-      <ItemsControl
-        ItemsSource="{Binding Tracks}"
-        IsEnabled="{Binding Selected}"
-      >
+    <ScrollViewer Name="TrackListViewer" VerticalScrollBarVisibility="Hidden">
+      <ItemsControl ItemsSource="{Binding Tracks}"
+                    IsEnabled="{Binding Selected}"
+                    ItemTemplate="{StaticResource TrackTemplateSelector}">
         <ItemsControl.ItemsPanel>
           <ItemsPanelTemplate>
             <StackPanel />
           </ItemsPanelTemplate>
         </ItemsControl.ItemsPanel>
-      
-        <ItemsControl.ItemTemplate>
-          <DataTemplate DataType="vm:TrackInfoViewModel">
-            <views:TrackInfoView/>
-          </DataTemplate>
-        </ItemsControl.ItemTemplate>
       </ItemsControl>
     </ScrollViewer>
   </DockPanel>

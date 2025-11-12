@@ -1,0 +1,35 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Sonicate.GUI.ViewModels"
+             xmlns:dt="clr-namespace:Sonicate.GUI.ViewModels.DesignTime"
+             x:Class="Sonicate.GUI.Views.VideoTrackInfoView"
+             x:DataType="vm:VideoTrackInfoViewModel"
+             xmlns:views="clr-namespace:Sonicate.GUI.Views"
+>
+  <Design.DataContext>
+    <dt:PreviewTrackInfo />
+  </Design.DataContext>
+  <DockPanel
+    Margin="{Binding Margin}"
+    HorizontalAlignment="Stretch"
+    MinWidth="100"
+  >
+    <CheckBox IsChecked="{Binding Selected}" />
+    <Grid HorizontalAlignment="Stretch">
+      <TextBlock
+        Text="{Binding Track.Codec}"
+        IsEnabled="{Binding Selected}"
+      />
+    </Grid>
+    <TextBlock
+      Text="{Binding Track.Language}"
+      IsEnabled="{Binding Selected}"
+      TextAlignment="Right"
+    />
+    <TextBlock Text="{Binding VideoTrack.Width}" />
+    <TextBlock Text="{Binding VideoTrack.Height}" />
+    <TextBlock Text="{Binding VideoTrack.FrameRate}" />
+  </DockPanel>
+</UserControl>

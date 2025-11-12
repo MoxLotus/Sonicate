@@ -31,18 +31,41 @@ public class FFmpegMetadataService : IVideoMetadataService
         List<MediaStream> streams = [.. mediaInfo.VideoStreams, .. mediaInfo.AudioStreams, .. mediaInfo.SubtitleStreams];
         foreach (MediaStream stream in streams)
         {
-            containerInfo.AddTrack(new()
+            TrackInfo trackInfo = stream switch
             {
-                Type = stream switch
-                {
-                    AudioStream => MediaInfo.TrackInfo.TrackType.Audio,
-                    SubtitleStream => MediaInfo.TrackInfo.TrackType.Subtitle,
-                    VideoStream => MediaInfo.TrackInfo.TrackType.Video,
-                    _ => MediaInfo.TrackInfo.TrackType.Unknown,
-                },
-                Codec = stream.CodecName,
-                Language = stream.Language ?? string.Empty,
-            });
+                VideoStream videoStream =>
+                   new VideoTrackInfo()
+                   {
+                       Type = TrackInfo.TrackType.Video,
+                       Width = videoStream.Width,
+                       Height = videoStream.Height,
+                       FrameRate = videoStream.FrameRate,
+                   },
+                AudioStream audioStream =>
+                    new AudioTrackInfo()
+                    {
+                        Type = TrackInfo.TrackType.Audio,
+                        Channels = audioStream.Channels,
+                    },
+                SubtitleStream subtitleStream =>
+                    new()
+                    {
+                        Type = TrackInfo.TrackType.Subtitle,
+                        Codec = stream.CodecName,
+                        Language = stream.Language ?? string.Empty,
+                        Bitrate = stream.BitRate,
+                    },
+                _ =>
+                    new()
+                    {
+                        Type = TrackInfo.TrackType.Unknown,
+                    }
+            };
+            trackInfo.Codec = stream.CodecName;
+            trackInfo.Language = stream.Language ?? string.Empty;
+            trackInfo.Bitrate = stream.BitRate;
+
+            containerInfo.AddTrack(trackInfo);
         }
 
         return containerInfo;

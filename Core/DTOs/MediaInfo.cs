@@ -20,19 +20,5 @@ public class MediaInfo
     public void AddTrack(TrackInfo track)
     {
         _tracks.Add(track);
-    }   
-    public class TrackInfo
-    {
-        public TrackType Type { get; set; }
-        public required string Codec { get; set; }
-        public required string Language { get; set; }
-
-        public enum TrackType
-        {
-            Video,
-            Audio,
-            Subtitle,
-            Unknown,
-        }
     }
 }
