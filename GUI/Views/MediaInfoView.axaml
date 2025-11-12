@@ -18,6 +18,7 @@
     />
     <StackPanel
       DockPanel.Dock="Top"
+      IsEnabled="{Binding Selected}"
     >
       <TextBlock
         Text="{Binding File.Name}"
@@ -31,7 +32,10 @@
     <ScrollViewer Name="TrackListViewer"
                   VerticalScrollBarVisibility="Hidden"
     >
-      <ItemsControl ItemsSource="{Binding Tracks}">
+      <ItemsControl
+        ItemsSource="{Binding Tracks}"
+        IsEnabled="{Binding Selected}"
+      >
         <ItemsControl.ItemsPanel>
           <ItemsPanelTemplate>
             <StackPanel />
