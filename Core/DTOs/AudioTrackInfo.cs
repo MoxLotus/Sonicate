@@ -8,5 +8,5 @@ namespace Sonicate.Core.DTOs;
 
 public class AudioTrackInfo : TrackInfo
 {
-    public required int Channels { get; set; }
+    public required int Channels { get; init; }
 }

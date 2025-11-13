@@ -1,0 +1,38 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Sonicate.GUI.ViewModels"
+             xmlns:dt="clr-namespace:Sonicate.GUI.ViewModels.DesignTime"
+             x:Class="Sonicate.GUI.Views.AudioViewItem"
+             x:DataType="vm:AudioVMItem"
+             xmlns:views="clr-namespace:Sonicate.GUI.Views"
+>
+  <Design.DataContext>
+    <!-- TODO: Need to make a valid preview -->
+    <dt:PreviewAudioTrackInfoVM />
+  </Design.DataContext>
+  <StackPanel
+    Orientation="Horizontal"
+    Margin="0, 0, 5, 0"
+  >
+    <CheckBox IsChecked="{Binding Selected}" />
+    <DockPanel
+      HorizontalAlignment="Stretch"
+      MinWidth="175"
+      IsEnabled="{Binding Selected}"
+    >
+      <Grid HorizontalAlignment="Stretch">
+        <TextBlock
+          Text="{Binding Codec}"
+        />
+      </Grid>
+      <TextBlock Text = " " />
+      <TextBlock Text = "{Binding Channels}" />
+      <TextBlock
+        Text="{Binding Language}"
+        TextAlignment="Right"
+      />
+    </DockPanel>
+  </StackPanel>
+</UserControl>

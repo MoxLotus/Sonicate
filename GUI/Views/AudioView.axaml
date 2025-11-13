@@ -24,8 +24,8 @@
         </ItemsControl.ItemsPanel>
 
         <ItemsControl.ItemTemplate>
-          <DataTemplate DataType="vm:AudioTrackInfoVM">
-            <views:AudioTrackInfoView />
+          <DataTemplate DataType="vm:AudioVMItem">
+            <views:AudioViewItem />
           </DataTemplate>
         </ItemsControl.ItemTemplate>
       </ItemsControl>
