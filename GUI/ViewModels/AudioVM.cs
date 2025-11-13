@@ -24,14 +24,6 @@ public class AudioVM : MainVM.Child
                 )
             ];
 
-        var uniqueValuesPerRow = Enumerable.Range(0, matrix[0].Count)
-            .Select(r => matrix.Select(col => col[r])
-                .Select(track => track.Track.Codec)
-                .Distinct()
-                .ToList())
-            .ToList();
-
-
         int rows = matrix.Max(list => list.Count);
         for (int r = 0; r < rows; r++)
             Tracks.Add(new([.. matrix.Where(c => r < c.Count).Select(c => c[r])]));
