@@ -19,11 +19,8 @@
     <TabItem Header="Audio">
       <views:AudioView DataContext="{Binding Audio}"/>
     </TabItem>
-    <TabItem Header="Commentary">
-      <views:AudioView DataContext="{Binding Commentary}"/>
-    </TabItem>
     <TabItem Header="Subtitles">
-      <!---->views:SubtitleView DataContext="{Binding Subtitles}"/>
+      <views:SubtitleView DataContext="{Binding Subtitle}"/>
     </TabItem>
   </TabControl>
 

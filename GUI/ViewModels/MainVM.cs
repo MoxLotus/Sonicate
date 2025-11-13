@@ -15,14 +15,14 @@ public class MainVM : ReactiveObject
     public FileSelectVM FileSelect { get; } = new();
     public TranscodeVM Transcode { get; } = new();
     public AudioVM Audio { get; } = new();
-    public AudioVM Commentary { get; } = new();
+    public SubtitleVM Subtitle { get; } = new();
 
     public MainVM()
     {
         FileSelect.Initialize(this);
         Transcode.Initialize(this);
         Audio.Initialize(this);
-        Commentary.Initialize(this);
+        Subtitle.Initialize(this);
     }
 
     /// <summary>
