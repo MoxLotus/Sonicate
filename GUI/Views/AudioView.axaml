@@ -6,16 +6,29 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Sonicate.GUI.Views.AudioView"
              x:DataType="vm:AudioVM"
+             xmlns:views="clr-namespace:Sonicate.GUI.Views"
              >
-  <Design.DataContext>
-    <!-- This only sets the DataContext for the previewer in an IDE,
-         to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-    <vm:AudioVM />
-  </Design.DataContext>
 
   <StackPanel>
     <TextBlock Text="Singleton" />
     <TextBlock Text="Language" />
     <TextBlock Text="Channels" />
+    <Button Content="Test" Command="{Binding AnalyzeAudioTracks}" />
+
+    <ScrollViewer Name="TrackListViewer" VerticalScrollBarVisibility="Hidden">
+      <ItemsControl ItemsSource="{Binding Tracks}">
+        <ItemsControl.ItemsPanel>
+          <ItemsPanelTemplate>
+            <StackPanel />
+          </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+
+        <ItemsControl.ItemTemplate>
+          <DataTemplate DataType="vm:AudioTrackInfoVM">
+            <views:AudioTrackInfoView />
+          </DataTemplate>
+        </ItemsControl.ItemTemplate>
+      </ItemsControl>
+    </ScrollViewer>
   </StackPanel>
 </UserControl>
