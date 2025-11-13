@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Sonicate.GUI.ViewModels;
 
-public class TrackInfoViewModel(TrackInfo track) : SelectableViewModel
+public class TrackInfoVM(TrackInfo track) : SelectableVM
 {
     public TrackInfo Track { get; } = track;
     public Thickness Margin { get; } = new(

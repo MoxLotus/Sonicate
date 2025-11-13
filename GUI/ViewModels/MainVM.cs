@@ -10,14 +10,14 @@ using Sonicate.GUI.Services;
 
 namespace Sonicate.GUI.ViewModels;
 
-public class MainViewModel : ReactiveObject
+public class MainVM : ReactiveObject
 {
-    public FileSelectViewModel FileSelect { get; } = new();
-    public TranscodeViewModel Transcode { get; } = new();
-    public AudioViewModel Audio { get; } = new();
-    public AudioViewModel Commentary { get; } = new();
+    public FileSelectVM FileSelect { get; } = new();
+    public TranscodeVM Transcode { get; } = new();
+    public AudioVM Audio { get; } = new();
+    public AudioVM Commentary { get; } = new();
 
-    public MainViewModel()
+    public MainVM()
     {
         FileSelect.Initialize(this);
         Transcode.Initialize(this);
@@ -33,9 +33,9 @@ public class MainViewModel : ReactiveObject
     /// </remarks>
     public abstract class Child : ReactiveObject
     {
-        private MainViewModel? _parent;
-        protected MainViewModel Parent => _parent ?? throw new InvalidOperationException("AudioViewModel not initialized.");
-        public void Initialize(MainViewModel parent)
+        private MainVM? _parent;
+        protected MainVM Parent => _parent ?? throw new InvalidOperationException("AudioViewModel not initialized.");
+        public void Initialize(MainVM parent)
         {
             _parent ??= parent;
         }

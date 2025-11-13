@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Sonicate.GUI.ViewModels;
 
-public abstract class SelectableViewModel : ReactiveObject
+public abstract class SelectableVM : ReactiveObject
 {
     private bool _selected = true;
     public bool Selected

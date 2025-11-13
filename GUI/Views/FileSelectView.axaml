@@ -5,13 +5,13 @@
              xmlns:vm="clr-namespace:Sonicate.GUI.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Sonicate.GUI.Views.FileSelectView"
-             x:DataType="vm:FileSelectViewModel"
+             x:DataType="vm:FileSelectVM"
              xmlns:views="clr-namespace:Sonicate.GUI.Views"
              >
   <Design.DataContext>
     <!-- This only sets the DataContext for the previewer in an IDE,
          to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-    <vm:FileSelectViewModel />
+    <vm:FileSelectVM />
   </Design.DataContext>
 
   <DockPanel>
@@ -44,7 +44,7 @@
           </ItemsControl.ItemsPanel>
       
           <ItemsControl.ItemTemplate>
-            <DataTemplate DataType="vm:MediaInfoViewModel">
+            <DataTemplate DataType="vm:MediaInfoVM">
               <Border BorderBrush="Gray"
                       BorderThickness="1"
                       Margin="2,4,2,4"

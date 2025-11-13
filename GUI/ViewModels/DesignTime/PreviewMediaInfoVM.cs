@@ -10,9 +10,9 @@ using static Sonicate.Core.DTOs.MediaInfo;
 
 namespace Sonicate.GUI.ViewModels.DesignTime;
 
-public class PreviewMediaInfo : MediaInfoViewModel
+public class PreviewMediaInfoVM : MediaInfoVM
 {
-    public PreviewMediaInfo()
+    public PreviewMediaInfoVM()
         : base(
             new FileDescriptor(
                 "Sample Video File with a Very Long Name to Test UI Layouts.mp4",
@@ -33,21 +33,19 @@ public class PreviewMediaInfo : MediaInfoViewModel
     {
         public DummyMediaInfo()
         {
-            AddTrack(new TrackInfo { Codec = "H.264", Language = "und", Type = TrackInfo.TrackType.Video });
-            AddTrack(new TrackInfo { Codec = "AAC", Language = "eng", Type = TrackInfo.TrackType.Audio});
-            AddTrack(new TrackInfo { Codec = "Opus", Language = "jap", Type = TrackInfo.TrackType.Audio });
-            AddTrack(new TrackInfo { Codec = "SRT", Language = "eng", Type = TrackInfo.TrackType.Subtitle });
+            AddTrack(PreviewVideoTrackInfoVM.PreviewInfo);
+            AddTrack(PreviewAudioTrackInfoVM.PreviewInfo);
+            AddTrack(PreviewAudioTrackInfoVM.PreviewInfo2);
+            AddTrack(new TrackInfo
+            {
+                Codec = "SRT",
+                Language = "eng",
+                Type = TrackInfo.TrackType.Subtitle
+            });
         }
     }
-
-    public class DummyFile
-    {
-        public string Name { get; } = "Hello World! File names are often quite long.";
-    }
-
     private class DummyScrollSyncService : ScrollSyncService
     {
-        // Stubbed behavior if needed
     }
 
 }

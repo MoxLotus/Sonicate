@@ -15,7 +15,7 @@ using Sonicate.Core.DTOs;
 
 namespace Sonicate.GUI.ViewModels;
 
-public class FileSelectViewModel : MainViewModel.Child
+public class FileSelectVM : MainVM.Child
 {
     protected static IFileService GetFileAccessService()
     {
@@ -32,7 +32,7 @@ public class FileSelectViewModel : MainViewModel.Child
 
     public ReactiveCommand<Unit, Unit> SelectFilesCommand { get; }
 
-    public FileSelectViewModel()
+    public FileSelectVM()
     {
         SelectFilesCommand = ReactiveCommand.CreateFromTask(async () =>
         {
@@ -52,8 +52,8 @@ public class FileSelectViewModel : MainViewModel.Child
         });
     }
 
-    private ObservableCollection<MediaInfoViewModel> _mediaFiles = [];
-    public ObservableCollection<MediaInfoViewModel> MediaFiles
+    private ObservableCollection<MediaInfoVM> _mediaFiles = [];
+    public ObservableCollection<MediaInfoVM> MediaFiles
     {
         get => _mediaFiles;
         private set => this.RaiseAndSetIfChanged(ref _mediaFiles, value);

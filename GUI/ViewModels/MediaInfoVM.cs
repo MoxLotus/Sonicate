@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Sonicate.GUI.ViewModels;
 
-public class MediaInfoViewModel(FileDescriptor file, MediaInfo media, ScrollSyncService scrollSync) : ReactiveObject
+public class MediaInfoVM(FileDescriptor file, MediaInfo media, ScrollSyncService scrollSync) : ReactiveObject
 {
     private bool _selected = true;
     public bool Selected
@@ -19,7 +19,17 @@ public class MediaInfoViewModel(FileDescriptor file, MediaInfo media, ScrollSync
     public MediaInfo Media { get; } = media;
     public ScrollSyncService ScrollSync { get; } = scrollSync;
 
-    public ObservableCollection<TrackInfoViewModel> Tracks { get; } = new(
-        media.Tracks.Select(t => new TrackInfoViewModel(t))
+    public ObservableCollection<TrackInfoVM> Tracks { get; } = new(
+        media.Tracks.Select(
+            t =>
+            {
+                return t switch
+                {
+                    AudioTrackInfo at => new AudioTrackInfoVM(at),
+                    VideoTrackInfo vt => new VideoTrackInfoVM(vt),
+                    _ => new TrackInfoVM(t)
+                };
+            }
+        )
     );
 }

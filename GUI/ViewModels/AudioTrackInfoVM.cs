@@ -3,7 +3,7 @@ using System;
 
 namespace Sonicate.GUI.ViewModels;
 
-public class AudioTrackInfoViewModel(AudioTrackInfo track) : TrackInfoViewModel(track)
+public class AudioTrackInfoVM(AudioTrackInfo track) : TrackInfoVM(track)
 {
     public AudioTrackInfo AudioTrack { get; } = track;
 }

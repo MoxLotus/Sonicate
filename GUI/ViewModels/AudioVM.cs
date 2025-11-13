@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Sonicate.GUI.ViewModels;
 
-public class AudioViewModel : MainViewModel.Child
+public class AudioVM : MainVM.Child
 {
     public void AnalyzeAudioTracks(){
         // We grab the ViewModels so that we can select and deselect them in the UI.
-        List<List<TrackInfoViewModel>> matrix =
+        List<List<TrackInfoVM>> matrix =
             [.. (from file in Parent.FileSelect.MediaFiles
              select
                  (from track in file.Tracks

@@ -21,7 +21,7 @@ public partial class MediaInfoView : UserControl
                 throw new InvalidOperationException("TrackListViewer control not found.");
             }
 
-            if (DataContext is MediaInfoViewModel vm)
+            if (DataContext is MediaInfoVM vm)
             {
                 _trackListViewer.ScrollChanged += (_, args) =>
                 {

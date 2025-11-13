@@ -5,16 +5,16 @@
              xmlns:vm="clr-namespace:Sonicate.GUI.ViewModels"
              xmlns:dt="clr-namespace:Sonicate.GUI.ViewModels.DesignTime"
              x:Class="Sonicate.GUI.Views.AudioTrackInfoView"
-             x:DataType="vm:AudioTrackInfoViewModel"
+             x:DataType="vm:AudioTrackInfoVM"
              xmlns:views="clr-namespace:Sonicate.GUI.Views"
 >
   <Design.DataContext>
-    <dt:PreviewTrackInfo />
+    <dt:PreviewAudioTrackInfoVM />
   </Design.DataContext>
   <DockPanel
-    Margin="{Binding Margin}"
+    Margin="25, 0, 5, 0"
     HorizontalAlignment="Stretch"
-    MinWidth="100"
+    MinWidth="175"
   >
     <CheckBox IsChecked="{Binding Selected}" />
     <Grid HorizontalAlignment="Stretch">
@@ -23,11 +23,12 @@
         IsEnabled="{Binding Selected}"
       />
     </Grid>
+    <TextBlock Text = " " />
+    <TextBlock Text = "{Binding AudioTrack.Channels}" />
     <TextBlock
       Text="{Binding Track.Language}"
       IsEnabled="{Binding Selected}"
       TextAlignment="Right"
     />
-    <TextBlock Text = "{Binding AudioTrack.Channels}" />
   </DockPanel>
 </UserControl>
