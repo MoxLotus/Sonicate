@@ -9,14 +9,33 @@
              xmlns:views="clr-namespace:Sonicate.GUI.Views"
              >
 
-  <StackPanel>
-    <TextBlock Text="Singleton" />
-    <TextBlock Text="Language" />
-    <Button Content="Test" Command="{Binding AnalyzeSubtitleTracks}" />
-    <CheckBox Content="All" IsChecked="{Binding Selected}" />
+  <DockPanel>
+    <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+      <TextBlock Text="(De)Select All:" Margin="5,0,5,0" VerticalAlignment="Center"/>
+      <CheckBox IsChecked="{Binding Selected}" />
+      <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+          </Grid.RowDefinitions>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+          </Grid.ColumnDefinitions>
 
-    <ScrollViewer Name="TrackListViewer" VerticalScrollBarVisibility="Hidden">
-      <ItemsControl ItemsSource="{Binding Tracks}">
+        <TextBlock Text="Isolate Language:" Margin="5,5,5,5" HorizontalAlignment="Right" Grid.Row="0" Grid.Column="0" />
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0">
+          <TextBlock Text="Or" Margin="5,5,5,5" />
+          <Button Content="Add" Command="{Binding AddLanguage}" />
+          <Button Content="Remove" Command="{Binding RemoveLanguage}" />
+        </StackPanel>
+        <ComboBox ItemsSource="{Binding Languages}" SelectedItem="{Binding SelectedLanguage}" Grid.Row="0" Grid.Column="1" />
+        <ComboBox ItemsSource="{Binding Languages}" SelectedItem="{Binding SelectedLanguage2}" Grid.Row="1" Grid.Column="1" />
+      </Grid>
+    </StackPanel>
+
+    <ScrollViewer Name="SubtitleListViewer" VerticalScrollBarVisibility="Hidden">
+      <ItemsControl ItemsSource="{Binding TrackVMsVM}">
         <ItemsControl.ItemsPanel>
           <ItemsPanelTemplate>
             <StackPanel />
@@ -30,5 +49,5 @@
         </ItemsControl.ItemTemplate>
       </ItemsControl>
     </ScrollViewer>
-  </StackPanel>
+  </DockPanel>
 </UserControl>

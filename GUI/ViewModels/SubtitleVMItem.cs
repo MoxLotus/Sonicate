@@ -9,7 +9,7 @@ namespace Sonicate.GUI.ViewModels;
 
 public class SubtitleVMItem : ReactiveObject
 {
-    public List<TrackInfoVM> SubtitleTracks { get; }
+    public List<TrackInfoVM> SubtitleTrackVMs { get; }
     public string Codec { get; init; }
     public string Language { get; init; }
     private bool _selected = true;
@@ -18,16 +18,16 @@ public class SubtitleVMItem : ReactiveObject
         get => _selected;
         set
         {
-            SubtitleTracks.ForEach(t => t.Selected = value);
+            SubtitleTrackVMs.ForEach(t => t.Selected = value);
             this.RaiseAndSetIfChanged(ref _selected, value);
         }
     }
 
-    public SubtitleVMItem(List<TrackInfoVM> tracks)
+    public SubtitleVMItem(List<TrackInfoVM> trackVMs)
     {
-        SubtitleTracks = tracks;
-        List<string> codecs = [.. tracks.Select(t => t.Track.Codec).Distinct()];
-        List<string> language = [.. tracks.Select(t => t.Track.Language).Distinct()];
+        SubtitleTrackVMs = trackVMs;
+        List<string> codecs = [.. trackVMs.Select(t => t.Track.Codec).Distinct()];
+        List<string> language = [.. trackVMs.Select(t => t.Track.Language).Distinct()];
         Codec = codecs.Count == 1 ? codecs[0] : "varies";
         Language = language.Count == 1 ? language[0] : "varies";
     }
