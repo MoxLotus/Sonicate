@@ -31,30 +31,35 @@ public class AudioVM : MainVM.Child
         {
             bool sameCodec = true;
             bool sameChannels = true;
+            bool sameLanguage = true;
             string codec = matrix[0][r].Track.Codec ?? "";
             int channels = matrix[0][r].AudioTrack.Channels;
+            string language = matrix[0][r].Track.Language ?? "";
             for (int c = 1; c < matrix.Count; c++)
             {
                 if (matrix[c].Count <= r)
                     break;
                 AudioTrackInfoVM candidate = matrix[c][r];
                 if (sameCodec)
-                {
                     if (matrix[c].Count > r && !codec.Equals(candidate.Track.Codec))
                     {
                         sameCodec = false;
                         codec = "varies";
                     }
-                }
 
                 if (sameChannels)
-                {
                     if (matrix[c].Count > r && channels != candidate.AudioTrack.Channels)
                     {
                         sameChannels = false;
                         channels = -1;
                     }
-                }
+
+                if (sameLanguage)
+                    if (matrix[c].Count > r && !language.Equals(candidate.Track.Language))
+                    {
+                        sameLanguage = false;
+                        language = "varies";
+                    }
 
                 if (!sameCodec && !sameChannels)
                     break;
@@ -65,6 +70,7 @@ public class AudioVM : MainVM.Child
                 {
                     Codec = codec,
                     Channels = channels,
+                    Language = language,
                 }
             ));
         }
