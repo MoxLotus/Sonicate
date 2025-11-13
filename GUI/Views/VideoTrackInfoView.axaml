@@ -11,26 +11,29 @@
   <Design.DataContext>
     <dt:PreviewVideoTrackInfoVM />
   </Design.DataContext>
-  <DockPanel
+  <StackPanel
+    Orientation="Horizontal"
     Margin="0, 0, 5, 0"
-    HorizontalAlignment="Stretch"
-    MinWidth="175"
   >
     <CheckBox IsChecked="{Binding Selected}" />
-    <Grid HorizontalAlignment="Stretch">
-      <TextBlock
-        Text="{Binding Track.Codec}"
-        IsEnabled="{Binding Selected}"
-      />
-    </Grid>
-    <TextBlock Text=" " />
-    <TextBlock Text="{Binding VideoTrack.Width}" />
-    <TextBlock Text="x" />
-    <TextBlock Text="{Binding VideoTrack.Height}" />
-    <TextBlock
-      Text="{Binding Track.Language}"
+    <DockPanel
+      HorizontalAlignment="Stretch"
+      MinWidth="175"
       IsEnabled="{Binding Selected}"
-      TextAlignment="Right"
-    />
-  </DockPanel>
+    >
+      <Grid HorizontalAlignment="Stretch">
+        <TextBlock
+          Text="{Binding Track.Codec}"
+        />
+      </Grid>
+      <TextBlock Text=" " />
+      <TextBlock Text="{Binding VideoTrack.Width}" />
+      <TextBlock Text="x" />
+      <TextBlock Text="{Binding VideoTrack.Height}" />
+      <TextBlock
+        Text="{Binding Track.Language}"
+        TextAlignment="Right"
+      />
+    </DockPanel>
+  </StackPanel>
 </UserControl>
