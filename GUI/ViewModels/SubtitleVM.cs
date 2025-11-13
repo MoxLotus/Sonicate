@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ReactiveUI;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -10,6 +11,17 @@ namespace Sonicate.GUI.ViewModels;
 public class SubtitleVM : MainVM.Child
 {
     public ObservableCollection<SubtitleVMItem> Tracks { get; private set; } = [];
+    private bool _selected = true;
+    public bool Selected
+    {
+        get => _selected;
+        set
+        {
+            foreach (var track in Tracks)
+                track.Selected = value;
+            this.RaiseAndSetIfChanged(ref _selected, value);
+        }
+    }
     public void AnalyzeSubtitleTracks()
     {
         Tracks.Clear();

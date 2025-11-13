@@ -13,6 +13,7 @@
     <TextBlock Text="Singleton" />
     <TextBlock Text="Language" />
     <Button Content="Test" Command="{Binding AnalyzeSubtitleTracks}" />
+    <CheckBox Content="All" IsChecked="{Binding Selected}" />
 
     <ScrollViewer Name="TrackListViewer" VerticalScrollBarVisibility="Hidden">
       <ItemsControl ItemsSource="{Binding Tracks}">
