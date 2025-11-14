@@ -14,14 +14,16 @@ public class PreviewAudioTrackInfoVM : AudioTrackInfoVM
         Codec = "AAC",
         Language = "eng",
         Type = TrackInfo.TrackType.Audio,
-        Channels = 6
+        Channels = 6,
+        Layout = "5.1",
     };
     public static AudioTrackInfo PreviewInfo2 { get; } = new AudioTrackInfo
     {
         Codec = "Opus",
         Language = "jap",
         Type = TrackInfo.TrackType.Audio,
-        Channels = 2
+        Channels = 2,
+        Layout = "stereo",
     };
     public PreviewAudioTrackInfoVM()
         : base(PreviewInfo)

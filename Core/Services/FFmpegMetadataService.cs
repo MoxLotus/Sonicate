@@ -46,6 +46,7 @@ public class FFmpegMetadataService : IVideoMetadataService
                     {
                         Type = TrackInfo.TrackType.Audio,
                         Channels = audioStream.Channels,
+                        Layout = audioStream.ChannelLayout,
                     },
                 SubtitleStream subtitleStream =>
                     new()
