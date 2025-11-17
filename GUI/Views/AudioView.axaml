@@ -15,20 +15,33 @@
     <TextBlock Text="Channels" />
     <Button Content="Test" Command="{Binding AnalyzeAudioTracks}" />
 
-    <ScrollViewer Name="TrackListViewer" VerticalScrollBarVisibility="Hidden">
-      <ItemsControl ItemsSource="{Binding Tracks}">
-        <ItemsControl.ItemsPanel>
-          <ItemsPanelTemplate>
-            <StackPanel />
-          </ItemsPanelTemplate>
-        </ItemsControl.ItemsPanel>
+    <Button Content="Select Languages">
+      <Button.Flyout>
+        <Flyout Placement="Bottom">
+          <ItemsControl ItemsSource="{Binding AvailableLanguages}">
+            <ItemsControl.ItemTemplate>
+              <DataTemplate>
+                <CheckBox Content="{Binding Language}"
+                          IsChecked="{Binding Selected, Mode=TwoWay}" />
+              </DataTemplate>
+            </ItemsControl.ItemTemplate>
+          </ItemsControl>
+        </Flyout>
+      </Button.Flyout>
+    </Button>
 
-        <ItemsControl.ItemTemplate>
-          <DataTemplate DataType="vm:AudioVMItem">
-            <views:AudioViewItem />
-          </DataTemplate>
-        </ItemsControl.ItemTemplate>
-      </ItemsControl>
-    </ScrollViewer>
+    <ItemsRepeater ItemsSource="{Binding Tracks}">
+      <ItemsRepeater.ItemTemplate>
+        <DataTemplate>
+          <Grid ColumnDefinitions="Auto,*,*,*">
+            <CheckBox IsChecked="{Binding Selected}" Focusable="False" />
+            <TextBlock Grid.Column="1" Text="{Binding Codec}" />
+            <TextBlock Grid.Column="2" Text="{Binding Layout}" />
+            <TextBlock Grid.Column="3" Text="{Binding Language}" />
+          </Grid>
+        </DataTemplate>
+      </ItemsRepeater.ItemTemplate>
+    </ItemsRepeater>
+
   </StackPanel>
 </UserControl>
