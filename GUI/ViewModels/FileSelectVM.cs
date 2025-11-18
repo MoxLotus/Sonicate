@@ -49,8 +49,7 @@ public class FileSelectVM : MainVM.Child
             MediaFiles.Clear();
             foreach (var file in files)
                 MediaFiles.Add(new(file, await serv.GetMetadataAsync(file.Path.LocalPath), scrollSync));
-            //TODO: Consider architectural implications
-            Parent.Subtitle.AnalyzeSubtitleTracks();
+            Parent.PropagateData();
         });
     }
 

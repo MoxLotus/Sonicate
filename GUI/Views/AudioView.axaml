@@ -10,19 +10,15 @@
              >
 
   <StackPanel>
-    <TextBlock Text="Singleton" />
-    <TextBlock Text="Language" />
-    <TextBlock Text="Channels" />
-    <Button Content="Test" Command="{Binding AnalyzeAudioTracks}" />
-
+    <CheckBox Content="All" IsChecked="{Binding Selected}" />
     <Button Content="Select Languages">
       <Button.Flyout>
         <Flyout Placement="Bottom">
           <ItemsControl ItemsSource="{Binding AvailableLanguages}">
             <ItemsControl.ItemTemplate>
               <DataTemplate>
-                <CheckBox Content="{Binding Language}"
-                          IsChecked="{Binding Selected, Mode=TwoWay}" />
+                <CheckBox Content="{Binding Value}"
+                          IsChecked="{Binding IsFlagged, Mode=TwoWay}" />
               </DataTemplate>
             </ItemsControl.ItemTemplate>
           </ItemsControl>

@@ -25,6 +25,12 @@ public class MainVM : ReactiveObject
         Subtitle.Initialize(this);
     }
 
+    protected internal void PropagateData()
+    {
+        Audio.AnalyzeAudioTracks();
+        Subtitle.AnalyzeSubtitleTracks();
+    }
+
     /// <summary>
     /// Represents a base class for child view models that require initialization with a this view model.
     /// </summary>
