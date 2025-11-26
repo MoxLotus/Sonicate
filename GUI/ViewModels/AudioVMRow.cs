@@ -17,15 +17,15 @@ public class AudioVMRow : INotifyPropertyChanged
     public string Language { get; }
     public int Channels { get; }
     public string Layout { get; }
-    private bool _selected = true;
+    private bool? _selected = true;
 
-    public bool Selected
+    public bool? Selected
     {
         get => _selected;
         set
         {
             _selected = value;
-            AudioTracks.ForEach(t => t.Selected = value);
+            if (value != null) AudioTracks.ForEach(t => t.Selected = (bool)value);
             OnPropertyChanged(nameof(Selected));
         }
     }
@@ -37,6 +37,12 @@ public class AudioVMRow : INotifyPropertyChanged
     public AudioVMRow(List<AudioTrackInfoVM> tracks)
     {
         AudioTracks = tracks;
+        AudioTracks.ForEach(t => t.PropertyChanged += (s, e) =>
+        {
+            if (e.PropertyName == nameof(AudioTrackInfoVM.Selected))
+                UpdateSelected();
+        });
+
         List<string> codecs = [.. tracks.Select(t => t.AudioTrack.Codec).Distinct()];
         Languages = [.. tracks.Select(t => t.AudioTrack.Language).Distinct()];
         List<int> channels = [.. tracks.Select(t => t.AudioTrack.Channels).Distinct()];
@@ -45,5 +51,21 @@ public class AudioVMRow : INotifyPropertyChanged
         Language = Languages.Count == 1 ? Languages[0] : "varies";
         Channels = channels.Count == 1 ? channels[0] : -1;
         Layout = layouts.Count == 1 ? layouts[0] : "varies";
+    }
+
+    private void UpdateSelected()
+    {
+        int count = AudioTracks.Where(t => t.Selected).Count();
+        bool? update = null;
+        if (count == 0)
+            update = false;
+        else if (count == AudioTracks.Count)
+            update = true;
+
+        if (update != _selected)
+        {
+            _selected = update;
+            OnPropertyChanged(nameof(Selected));
+        }
     }
 }

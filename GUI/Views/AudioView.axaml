@@ -18,7 +18,8 @@
             <ItemsControl.ItemTemplate>
               <DataTemplate>
                 <CheckBox Content="{Binding Value}"
-                          IsChecked="{Binding IsFlagged, Mode=TwoWay}" />
+                          IsChecked="{Binding IsFlagged, Mode=TwoWay}"
+                />
               </DataTemplate>
             </ItemsControl.ItemTemplate>
           </ItemsControl>

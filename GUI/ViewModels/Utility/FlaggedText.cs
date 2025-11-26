@@ -7,8 +7,8 @@ public class Flagged<T>(T value) : INotifyPropertyChanged
 {
     public T Value { get; init; } = value;
 
-    private bool _isFlagged = true;
-    public bool IsFlagged
+    private bool? _isFlagged = true;
+    public bool? IsFlagged
     {
         get => _isFlagged;
         set
